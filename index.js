@@ -5,6 +5,7 @@ var express 			= require('express'),
  	meetupsController	= require('./server/controllers/meetups-controller');
 
 var uri = 'mongodb://admin:#Encrypted1@ds061751.mongolab.com:61751/heroku_app35658026';
+var port = process.env.PORT || 3000;
 mongoose.connect(uri);
 
 app.use(bodyParser.json());
