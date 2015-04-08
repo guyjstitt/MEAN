@@ -1,13 +1,24 @@
-var express = require('express');
-var app = express();
+var express 			= require('express'),
+ 	app 				= express(),
+ 	bodyParser			= require('body-parser'),
+ 	mongoose			= require('mongoose'),
+ 	meetupsController	= require('./server/controllers/meetups-controller');
 
-app.set('port', (process.env.PORT || 5000));
-app.use(express.static(__dirname + '/public'));
-
-app.get('/', function(request, response) {
-  response.send('Hello World!');
+mongoose.connect('mongodb://localhost:27017/mean-demo');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.get('/', function	(req, res){
+	res.sendFile(__dirname + '/client/views/index.html');
 });
 
-app.listen(app.get('port'), function() {
-  console.log("Node app is running at localhost:" + app.get('port'));
-});
+app.use('/js', express.static(__dirname + '/client/js'));
+
+//REST API
+app.get('/api/meetups', meetupsController.list)
+app.post('/api/meetups', meetupsController.create);
+
+app.listen(3000, function(){
+	console.log('I\'m Listenining...');
+})
