@@ -12,6 +12,21 @@ app.use(bodyParser.urlencoded({
 
 */
 
+app.use('/js', express.static(__dirname + '/client/js'));
+
+app.get('/', function	(req, res){
+	res.sendFile(__dirname + '/client/views/index.html');
+});
+
+//REST API
+app.get('/api/meetups', meetupsController.list)
+app.post('/api/meetups', meetupsController.create);
+
+app.listen(3000, function(){
+	console.log('I\'m Listenining...');
+})
+
+
 /*
  * Copyright (c) 2015 ObjectLabs Corporation
  * Distributed under the MIT license - http://opensource.org/licenses/MIT
@@ -110,16 +125,3 @@ mongodb.MongoClient.connect(uri, function(err, db) {
   });
 });
 
-app.get('/', function	(req, res){
-	res.sendFile(__dirname + '/client/views/index.html');
-});
-
-app.use('/js', express.static(__dirname + '/client/js'));
-
-//REST API
-app.get('/api/meetups', meetupsController.list)
-app.post('/api/meetups', meetupsController.create);
-
-app.listen(3000, function(){
-	console.log('I\'m Listenining...');
-})
