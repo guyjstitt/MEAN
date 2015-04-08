@@ -1,7 +1,6 @@
 var express 			= require('express'),
  	app 				= express(),
  	bodyParser			= require('body-parser'),
- 	mongoose			= require('mongoose'),
  	meetupsController	= require('./server/controllers/meetups-controller');
 
 /*
@@ -22,7 +21,7 @@ app.use(bodyParser.urlencoded({
  * A Node script connecting to a MongoDB database given a MongoDB Connection URI.
 */
 
-var mongodb = require('mongodb');
+var mongodb = require('mongoose');
 
 // Create seed data
 
