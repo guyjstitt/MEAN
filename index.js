@@ -5,7 +5,7 @@ var express 			= require('express'),
  	meetupsController	= require('./server/controllers/meetups-controller');
 
 var uri = 'mongodb://admin:#Encrypted1@ds061751.mongolab.com:61751/heroku_app35658026';
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 5000));
 mongoose.connect(uri);
 
 app.use(bodyParser.json());
@@ -22,6 +22,6 @@ app.use('/js', express.static(__dirname + '/client/js'));
 app.get('/api/meetups', meetupsController.list)
 app.post('/api/meetups', meetupsController.create);
 
-app.listen(3000, function(){
+app.listen(process.env.PORT || 5000, function(){
 	console.log('I\'m Listenining...');
 })
