@@ -4,7 +4,7 @@ var express 			= require('express'),
  	mongoose			= require('mongoose'),
  	meetupsController	= require('./server/controllers/meetups-controller');
 
-mongoose.connect('mongodb://guyjstitt@gmail.com:#Encrypted1@ds061751.mongolab.com:61751/heroku_app35658026');
+mongoose.connect('mongodb://admin:#Encrypted1@ds061751.mongolab.com:61751/heroku_app35658026');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
@@ -22,3 +22,6 @@ app.post('/api/meetups', meetupsController.create);
 app.listen(3000, function(){
 	console.log('I\'m Listenining...');
 })
+
+\
+ds061751.mongolab.com:61751/heroku_app35658026 -u heroku_app35658026 -p #Encrypted1
