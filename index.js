@@ -4,7 +4,7 @@ var express 			= require('express'),
  	mongoose			= require('mongoose'),
  	meetupsController	= require('./server/controllers/meetups-controller');
 
-mongoose.connect('mongodb://localhost:27017/mean-demo');
+mongoose.connect('mongodb://guyjstitt@gmail.com:#Encrypted1@ds061751.mongolab.com:61751/heroku_app35658026');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
