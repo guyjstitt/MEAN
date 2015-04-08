@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({
  * A Node script connecting to a MongoDB database given a MongoDB Connection URI.
 */
 
-var mongodb = require('mongoose/node_modules/mongodb');
+var mongodb = require('mongodb');
 
 // Create seed data
 
