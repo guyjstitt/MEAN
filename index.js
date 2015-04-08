@@ -22,6 +22,3 @@ app.post('/api/meetups', meetupsController.create);
 app.listen(3000, function(){
 	console.log('I\'m Listenining...');
 })
-
-\
-ds061751.mongolab.com:61751/heroku_app35658026 -u heroku_app35658026 -p #Encrypted1
