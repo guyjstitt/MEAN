@@ -1,14 +1,17 @@
-var Meetup = require('../models/meetup');
+// var restful = require('node-restful');
+// module.exports = function(app, route) {
 
-module.exports.create = function (req, res){
-	var meetup = new Meetup(req.body);
-	meetup.save(function	(err, result){
-		res.json(result);
-	});
-}
+//   // Setup the controller for REST.
+//   var rest = restful.model(
+//     'movie',
+//     app.models.movie
+//   ).methods(['get', 'put', 'post', 'delete']);
 
-module.exports.list = function	(req, res){
-	Meetup.find({}, function	(err, results){
-		res.json(results);
-	});
-}
+//   // Register this endpoint with the application.
+//   rest.register(app, route);
+
+//   // Return middleware.
+//   return function(req, res, next) {
+//     next();
+//   };
+// };
