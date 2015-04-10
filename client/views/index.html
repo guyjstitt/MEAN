@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>big dicks</title>
+		<title>App</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width", initial-scale="0">
 	</head>
@@ -14,7 +14,7 @@
   			<h1>There are {{meetups.length}} meetups in here</h1>
   			<ul>
      			<li ng-repeat="meetup in meetups">
-            		<span>{{meetup.name}} <a href="" ng-click="deleteMeetup(meetup._id)">Delete </a> | <a href="" ng-click="editMeetup(meetup._id)">Edit</a></span>	
+            		<span>{{meetup.name}} <a href="" ng-click="deleteMeetup(meetup._id, $index)">Delete </a> | <a href="" ng-click="editMeetup(meetup._id)">Edit</a></span>	
             	</li>
   			</ul>
 
