@@ -8,7 +8,18 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams', func
 
 	$scope.meetups = []; 	//holds initial list
 	$scope.dynamic = []; 	//holds dynamic list
+	$scope.users = [];
 
+	$scope.createUser = function(){
+		var user = new User();
+		user.username = $scope.username;
+		user.password = $scope.password;
+		user.name = $scope.name;
+		user.email = $scope.email;
+		user.$save(function	(result){
+			$scope.users.push(result);
+		});
+	}
 
 	$scope.createMeetup = function(){
 		var meetup = new Meetup();

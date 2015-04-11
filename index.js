@@ -4,10 +4,23 @@ var express 			= require('express'),
  	mongoose			= require('mongoose'),
  	core                = require('./server/routes/core'),
  	meetup				= require('./server/routes/meetup');
+	passport            = require('passport');
+
+
+
+
+var meetup				= require('./server/routes/meetup'),
+    user                = require('./server/routes/user');
+
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 var mongoURI = 'mongodb://localhost:27017/mean-demo';
 app.set('port', (process.env.PORT || 5000));
 mongoose.connect(process.env.MONGOLAB_URI || mongoURI);
+
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -38,6 +51,7 @@ app.get('/', function(req, res) {
 
 
 
+app.use('/api', user);
 app.use('/api', meetup);
 app.use('/', core);
 
