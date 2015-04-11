@@ -2,6 +2,7 @@ var express 			= require('express'),
  	app 				= express(),
  	bodyParser			= require('body-parser'),
  	mongoose			= require('mongoose'),
+ 	core                = require('./server/routes/core'),
  	meetup				= require('./server/routes/meetup');
 
 var mongoURI = 'mongodb://localhost:27017/mean-demo';
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use('/js', express.static(__dirname + '/client/js'));
+app.use(express.static(__dirname + '/client/templates'));
 
 //REST API
 //app.get('/api/meetups', meetupsController.list)
@@ -23,13 +25,21 @@ app.use('/js', express.static(__dirname + '/client/js'));
 // 	next();
 // });
 
-app.get('/', function (req, res) {
-	res.sendFile(__dirname + '/client/views/index.html');
+
+
+app.set('views', __dirname + '/client/views');
+app.set('view engine', 'jade');
+
+app.get('/', function(req, res) {
+	res.render('default', 
+		{ title: 'Home'}
+	)
 });
 
-app.use('/api', meetup);
 
-console.log(meetup);
+
+app.use('/api', meetup);
+app.use('/', core);
 
 
 //PORT

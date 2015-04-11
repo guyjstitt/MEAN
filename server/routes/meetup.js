@@ -21,7 +21,7 @@ router.route('/meetups')
 			if(err) {
 				res.send(err);
 			} else {
-				res.json({message: 'Meetup Created'});
+				res.json({name: meetup.name});
 			}
 		});
 	})
@@ -44,7 +44,26 @@ router.route('/meetups/:_id/edit')
 				return console.error(err);
 			} else {
 				console.log('edit successful', meetup);
+				res.json(meetup);
 			}
+		});
+	})
+	.post(function(req, res) {
+		var name = req.body.name;
+		console.log(req.body);
+
+		//find it
+		Meetup.findById(req.params._id, function(err, meetup) {
+			//update it
+			meetup.update({
+				name: name
+			}, function( err, meetupId) {
+				if(err) {
+					console.log(err);
+				} else {
+					console.log('successfully updated ' + name);
+				}
+			});
 		});
 	});
 
