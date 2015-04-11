@@ -17,7 +17,7 @@
     "node-restful": "^0.1.18",
     "jade": "*",
     "stylus": "*",
-    "nib": "*"
+    "nib": "*",
     "passport": "^0.2.1"
   },
   "engines": {
