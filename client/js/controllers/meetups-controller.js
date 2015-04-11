@@ -1,9 +1,23 @@
 app.controller('meetupsController', ['$scope', '$resource', '$routeParams', function($scope, $resource, $routeParams){
 	var Meetup = $resource('/api/meetups');
+	var User = $resource('/api/users');
 	
 	Meetup.query(function	(results){
 		$scope.meetups = results;
 	});
+
+	$scope.users = []
+
+	$scope.createUser = function(){
+		var user = new User();
+		user.username = $scope.username;
+		user.password = $scope.password;
+		user.name = $scope.name;
+		user.email = $scope.email;
+		user.$save(function	(result){
+			$scope.users.push(result);
+		});
+	}
 	
 	$scope.meetups = []
 

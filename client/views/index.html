@@ -6,6 +6,8 @@
 		<title>App</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width", initial-scale="0">
+		<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
 	</head>
 	<body>
 
@@ -22,9 +24,25 @@
   				<input type="text" placeholder="Meetup Name" ng-model="meetupName">
   				<button type="submit">Add</button>
   			</form>
-		</div>
 
-		<p>My first paragraph.</p>
+
+		<form class="form-signin" ng-submit="createUser()">
+
+			<label for="username" class="sr-only">Username</label>
+			<input type="text" id="username" ng-model="username" class="form-control" placeholder="Username" required autofocus>
+
+			<label for="name" class="sr-only">Name</label>
+			<input type="text" id="name" ng-model="name" class="form-control" placeholder="Name" required autofocus>
+
+			<label for="email" class="sr-only">E-mail</label>
+			<input type="email" id="email" ng-model="email" class="form-control" placeholder="E-mail" required>
+
+			<label for="password" class="sr-only">Password</label>
+			<input type="password" ng-model="password" id="password" class="form-control" placeholder="Password" required>
+
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+		</form>
+		</div>
 
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-resource.js"></script>
