@@ -1,6 +1,7 @@
 var express 	= require('express');
 var router 		= express.Router();
 var Meetup      = require('../models/meetup');
+var io 			= require('../../index').io;
 
 // route middleware that will happen on every request
 router.use(function(req, res, next) {
@@ -21,9 +22,13 @@ router.route('/meetups')
 			if(err) {
 				res.send(err);
 			} else {
-				res.json({name: meetup.name});
+				
+				io.emit('meetup', req.body);
+				return res.sendStatus(200);
 			}
 		});
+
+		//return res.sendStatus(200);
 	})
 
 	.get(function(req, res) {
