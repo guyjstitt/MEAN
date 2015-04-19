@@ -1,7 +1,7 @@
 var app = angular.module('meetupApp', ['ngResource','ngRoute']);
 
 app.config(function($routeProvider, $locationProvider) {
-	$routeProvider.when('/' , {
+	$routeProvider.when('/home' , {
 		controller: 'MeetupsController',
 		templateUrl: '/home.html'
 	})
