@@ -8,10 +8,8 @@ var config = require('./config'),
 
 
 
-
 module.exports = function() {
     var app = express();
-
     app.use(bodyParser.urlencoded({
         extended: true
     }));
@@ -48,7 +46,5 @@ module.exports = function() {
     var meetupRoutes = require('../server/models/meetup');
 
     app.use('/api', meetupRoutes);
-
-
     return app;
 };

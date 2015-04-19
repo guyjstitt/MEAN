@@ -4,7 +4,7 @@ app.config(function($routeProvider, $locationProvider) {
 	$locationProvider.html5Mode(true);
 	$routeProvider.when('/', {
 		controller: 'MeetupsController',
-		templateUrl: 'home.ejs'
+		templateUrl: 'home.html'
 	})
 	.when('/:_id/edit', {
 		controller: 'EditController',

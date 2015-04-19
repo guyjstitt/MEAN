@@ -6,12 +6,15 @@ var config = require('./config/config'),
     passport = require('./config/passport');
 
 
-
 var db = mongoose(),
     app = express(),
     passport = passport();
 
-app.listen(config.port);
+http				= require('http').Server(app);
+io					= require('socket.io')(http);
+
+
+http.listen(config.port);
 
 
 module.exports = app;
