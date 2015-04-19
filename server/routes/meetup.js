@@ -1,7 +1,6 @@
 var express 	= require('express');
 var router 		= express.Router();
 var Meetup      = require('../models/meetup');
-var io 			= require('../../index').io;
 
 // route middleware that will happen on every request
 router.use(function(req, res, next) {
@@ -13,18 +12,24 @@ router.use(function(req, res, next) {
     next(); 
 });
 
+router.route('/test')
+	.get(function(req, res) {
+		 res.send(req.connection.remoteAddress);
+	});
+
 router.route('/meetups')
 	.post(function(req, res) {
 		var meetup = new Meetup();
 		meetup.name = req.body.name;
 
-		meetup.save(function(err) {
+		meetup.save(function(err, result) {
 			if(err) {
 				res.send(err);
 			} else {
+
+				io.emit('meetup', result);
 				
-				io.emit('meetup', req.body);
-				return res.sendStatus(200);
+				return res.send(result._id);
 			}
 		});
 
@@ -82,11 +87,10 @@ router.route('/meetups/:_id/delete')
 					if(err) {
 						console.error(err);
 					} else {
-						console.log("deleted " + meetup._id);
+						return res.send("deleted " + meetup._id);
 					}
 				})
 			}
 		})
 	});
-
 module.exports = router;

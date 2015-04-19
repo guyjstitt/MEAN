@@ -72,6 +72,8 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','meet
 
 	socketio.on('meetup', function(msg) {
 		$scope.meetups.push(msg);
+		console.log(msg);
+		console.log($scope.meetups);
 	})
 
 	$scope.meetups = []; 	//holds initial list
@@ -86,6 +88,7 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','meet
 		user.email = $scope.email;
 		user.$save(function	(result){
 			$scope.users.push(result);
+
 		});
 	}
 
