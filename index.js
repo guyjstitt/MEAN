@@ -64,6 +64,11 @@ router.use(function(req, res, next) {
     next(); 
 });
 
+router.route('/test')
+	.get(function(req, res) {
+		 res.send(req.ip);
+	});
+
 router.route('/meetups')
 	.post(function(req, res) {
 		var meetup = new Meetup();

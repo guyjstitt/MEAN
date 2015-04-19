@@ -8,6 +8,10 @@ app.config(function($routeProvider, $locationProvider) {
 	.when('/:_id/edit', {
 		controller: 'EditController',
 		templateUrl: '/edit.html'
+	})
+	.when('/test', {
+		controller: 'TestController',
+		templateUrl: '/test.html'
 	});
 });
 
@@ -50,6 +54,13 @@ app.factory('socketio', ['$rootScope', function ($rootScope) {
             }
         };
     }]);
+
+app.controller('TestController', ['$scope','$resource', function($scope, $resource) {
+	var Test = $resource('/api/test');
+	Test.query(function(result) {
+		console.log(result);
+	});
+}]);
 
 app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','meetupFactory','socketio', function($scope, $resource, $routeParams, meetupFactory, socketio){
 	var Meetup = $resource('/api/meetups');
