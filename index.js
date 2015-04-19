@@ -48,11 +48,22 @@ app.set('views', __dirname + '/client/views');
 app.set('css', __dirname + '/client/css')
 app.set('view engine', 'jade');
 
+
+
+
 app.get('/', function(req, res) {
 	res.render('default', 
 		{ title: 'Home'}
 	)
 });
+
+app.get('/:name', function(req, res) {
+	var name = req.params.name;
+	res.render('login', 
+		{ title: 'login'}
+	)
+});
+
 
 app.use('/api', user);
 app.use('/api', meetupRoutes);

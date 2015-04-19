@@ -13,7 +13,7 @@ html(ng-app="meetupApp")
     | <script type="text/javascript" src="/js/controllers/UsersController.js"></script>
   body
     header
-      h1 My Site
+      block header
     .container
       .row
         .col-md-4.col-md-offset-4
@@ -21,4 +21,4 @@ html(ng-app="meetupApp")
       .sidebar
         block sidebar
     footer
-      p Running on node with Express, Jade and Stylus
+      block footer

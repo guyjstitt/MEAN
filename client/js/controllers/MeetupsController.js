@@ -51,12 +51,12 @@ app.controller('RegisterController', ['$scope','$resource', function($scope, $re
 
 //temporary controller to change home url
 app.controller('RedirectController', ['$scope', function($scope) {
-	window.location.href = "/#/home";
+	window.location.href = "/home";
 }]);
 
 app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','meetupFactory','socketio', function($scope, $resource, $routeParams, meetupFactory, socketio){
 	var Meetup = $resource('/api/meetups');
-	
+
 	//list all 
 	Meetup.query(function(results){
 		$scope.meetups = results;
