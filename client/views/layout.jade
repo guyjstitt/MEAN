@@ -2,6 +2,7 @@ doctype
 html(ng-app="meetupApp")
   head
     title #{title} - My Site
+    block styles
     link(rel='stylesheet', href='/static/css/layout.css')
     link(rel='stylesheet', href='/static/css/bootstrap.css')
     | <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js'></script>
@@ -12,11 +13,13 @@ html(ng-app="meetupApp")
     | <script type="text/javascript" src="/js/controllers/MeetupsController.js"></script>
     | <script type="text/javascript" src="/js/controllers/UsersController.js"></script>
   body
+    div.menuWrapper
+      block menu
     header
       block header
     .container
       .row
-        .col-md-4.col-md-offset-4
+        .col-md-8.col-md-offset-2
           block content
       .sidebar
         block sidebar

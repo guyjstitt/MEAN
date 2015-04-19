@@ -1,22 +1,27 @@
 <section>
 	<!-- Meetups View -->
 	<div ng-controller="MeetupsController">
-			<h1>I am hosting {{meetups.length}} events</h1>
-			<ul>
+		<h1 class="text-center">There are {{meetups.length}} events</h1>
+		<ul class="eventList">
  			<li ng-repeat="meetup in meetups">
-        		<div>
-        			<span ng-hide="editing">{{meetup.name}}</span> 
-        			<input ng-show="editing" type="text" ng-model="dynamic[$index].name"></input>
-        			<a href="" ng-click="deleteMeetup(meetup._id, $index)">Delete </a> | 
-        			<a href="" ng-hide="editing" ng-click="editMeetup(meetup._id, $index); editing = !editing;">Edit</a>
-        			<a href="" ng-show="editing" ng-click="editing = !editing; updateMeetup(meetup._id, $index)">Save</a>
+        		<div class="panel panel-default">
+        			<div class="panel-heading"href=""  ng-click="viewMeetup(meetup._id, $index);">{{meetup.name}}</div>
+        			<div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+        			<div class="follow">
+        				<div class="btn-group" role="group" aria-label="Default button group">
+        					<button type="button" class="btn btn-default">Going</button>
+        					<button type="button" class="btn btn-default">Maybe</button>
+        				
+        					<button type="button" class="btn btn-default">No Going</button>
+        				</div>
+        			</div>
         		</div>	
         	</li>
-			</ul>
-			<form ng-submit="createMeetup()">
-				<input type="text" placeholder="Meetup Name" ng-model="meetupName">
-				<button type="submit">Add</button>
-			</form>
+		</ul>
 	</div>
-	<p>My first paragraph.</p>
 </section>

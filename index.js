@@ -58,11 +58,18 @@ app.get('/', function(req, res) {
 });
 
 app.get('/:name', function(req, res) {
+	res.render('default', 
+		{ title: 'Temp'}
+	)
+});
+
+app.get('/login', function(req, res) {
 	var name = req.params.name;
 	res.render('login', 
 		{ title: 'login'}
 	)
 });
+
 
 
 app.use('/api', user);

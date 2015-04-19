@@ -1,0 +1,24 @@
+ul {
+	list-style-type: none;
+}
+
+.editEvent {
+	width: 100%;
+	min-height: 150px;
+}
+
+.actions {
+	display: inline-block;
+}
+
+.actions a {
+	display: inline-block;
+}
+.follow {
+	text-align: right;
+	margin: 10px;
+}
+.follow .followLinks {
+	display: inline-block;
+	width: 300px;
+}

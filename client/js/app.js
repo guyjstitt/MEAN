@@ -10,9 +10,9 @@ app.config(function($routeProvider, $locationProvider) {
 		controller: 'EditController',
 		templateUrl: '/edit.html'
 	})
-	.when('/test', {
-		controller: 'TestController',
-		templateUrl: '/test.html'
+	.when('/my-events', {
+		controller: 'MeetupsController',
+		templateUrl: '/my-events.html'
 	})
 	.when('/login', {
 		controller: 'UserController',

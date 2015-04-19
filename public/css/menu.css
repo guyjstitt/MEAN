@@ -1,0 +1,42 @@
+.menuWrapper {
+	position: relative;
+	top: 0;
+}
+
+.menuContainer {
+	height: 60px;
+	background-color: #3a5795;
+}
+
+.menuWrapper .itemsContainer {
+	height: 100%;
+	list-style-type: none;
+}
+
+.menuWrapper .itemsContainer .search {
+	height: 100%;
+}
+
+.menuWrapper .itemsContainer .nav {
+	height: 100%;
+}
+
+.navItems {
+	height: 100%;
+	float: right;
+	list-style-type: none;
+}
+
+.navItems li {
+	height: 100%;
+	display: inline-block;
+	width: 60px;
+	line-height: 60px;
+	color: white;
+	text-transform: uppercase;
+	font-family: serif;
+}
+
+.navItems li a {
+	color: white;
+}
