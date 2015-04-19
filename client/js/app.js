@@ -4,11 +4,11 @@ app.config(function($routeProvider, $locationProvider) {
 	$locationProvider.html5Mode(true);
 	$routeProvider.when('/', {
 		controller: 'MeetupsController',
-		templateUrl: '/home.html'
+		templateUrl: 'home.ejs'
 	})
 	.when('/:_id/edit', {
 		controller: 'EditController',
-		templateUrl: '/edit.html'
+		templateUrl: 'edit.html'
 	})
 	.when('/my-events', {
 		controller: 'MeetupsController',
@@ -16,6 +16,6 @@ app.config(function($routeProvider, $locationProvider) {
 	})
 	.when('/login', {
 		controller: 'UserController',
-		templateUrl: '/login.html'
+		templateUrl: 'login.html'
 	});
 });

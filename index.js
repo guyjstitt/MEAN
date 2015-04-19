@@ -1,4 +1,4 @@
-var express 			= require('express'),
+/*var express 			= require('express'),
  	app 				= express(),
  	bodyParser			= require('body-parser'),
  	mongoose			= require('mongoose'),
@@ -83,4 +83,4 @@ http.listen(process.env.PORT || 5000, function(){
 	console.log('I\'m Listenining...');
 });
 
-exports.io = io;
+exports.io = io;*/

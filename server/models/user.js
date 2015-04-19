@@ -1,6 +1,3 @@
-/**
- * Created by Hao on 4/11/2015.
- */
 var mongoose = require('mongoose'),
     crypto = require('crypto'),
     Schema = mongoose.Schema;
@@ -13,7 +10,10 @@ var UserSchema = new Schema({
         trim: true,
         unique: true
     },
-    password: String
+    password: String,
+    provider: String,
+    providerId: String,
+    providerData: {}
 });
 
 UserSchema.pre('save',

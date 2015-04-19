@@ -1,56 +1,27 @@
-/**
- * Created by Hao on 4/11/2015.
- */
-var express 	= require('express');
-var router 		= express.Router();
-var User     = require('../models/user');
-var users = require('../controllers/users-controller');
+var users = require('../controllers/users-controller'),
+    passport = require('passport');
 
+//var router 		= express.Router();
 
+module.exports = function(app) {
+    app.route('/users').post(users.create).get(users.list);
 
-router.route('/users')
-    .post(function(req, res, next) {
-        var user = new User(req.body);
-        user.save(function(err) {
-            if (err) {
-                return next(err);
-            }
-            else {
-                res.json(user);
-            }
-        });
-    });
+    app.route('/users/:userId').get(users.read).put(users.update).delete(users.delete);
 
-router.route('/users')
-    .get(function(req, res) {
-        if (!req.user) {
-            res.render('register', {
-                title: 'Register Form'
-            });
-        }
-        else {
-            return res.redirect('/');
-        }
-    })
-    .post(function(req, res, next) {
-        if (!req.user) {
-            var user = new User(req.body);
-            user.save(function(err) {
-                if (err) {
-                    return res.redirect('/register');
-                }
+    app.param('userId', users.userByID);
 
-                req.login(user, function(err) {
-                    if (err)
-                        return next(err);
+    app.route('/register')
+        .get(users.renderRegister)
+        .post(users.register);
 
-                    return res.redirect('/');
-                });
-            });
-        }
-        else {
-            return res.redirect('/');
-        }
-    });
+    app.route('/login')
+        .get(users.renderLogin)
+        .post(passport.authenticate('local', {
+            successRedirect: '/',
+            failureRedirect: '/login',
+            failureFlash: true
+        }));
 
-module.exports = router;
+    app.get('/logout', users.logout);
+};
+
