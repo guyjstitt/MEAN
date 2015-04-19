@@ -13,9 +13,7 @@ var db = mongoose(),
 http				= require('http').Server(app);
 io					= require('socket.io')(http);
 
-
 http.listen(config.port);
 
-
-module.exports = app;
+module.exports = http;
 console.log(process.env.NODE_ENV + ' server running at http://localhost:' + config.port);

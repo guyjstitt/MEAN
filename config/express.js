@@ -43,7 +43,7 @@ module.exports = function() {
     app.use('/static', express.static(path.join(__dirname, '../', 'public')));
 
 
-    var meetupRoutes = require('../server/models/meetup');
+    var meetupRoutes = require('../server/routes/meetup');
 
     app.use('/api', meetupRoutes);
     return app;
