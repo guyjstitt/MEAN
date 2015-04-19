@@ -66,7 +66,7 @@ router.use(function(req, res, next) {
 
 router.route('/test')
 	.get(function(req, res) {
-		 res.send(req.ip);
+		 res.send(req.connection.remoteAddress);
 	});
 
 router.route('/meetups')
