@@ -21,6 +21,7 @@ router.route('/meetups')
 	.post(function(req, res) {
 		var meetup = new Meetup();
 		meetup.name = req.body.name;
+		meetup.attend = req.body.attend;
 
 		meetup.save(function(err, result) {
 			if(err) {
@@ -93,4 +94,26 @@ router.route('/meetups/:_id/delete')
 			}
 		})
 	});
+
+router.route('/meetups/:_id/attend')
+	.post(function(req, res) {
+		var attend = req.body._id;
+			console.log(req.body._id);
+
+		//find it
+		Meetup.findById(req.params._id, function(err, meetup) {
+			//update it
+			meetup.update({ $push : 
+				{attend: attend}
+			}, function( err, meetupId) {
+				if(err) {
+					console.log(err);
+				} else {
+					console.log('successfully added' + attend + "to meetup");
+					res.send("finished");
+				}
+			});
+		});
+	});
+
 module.exports = router;

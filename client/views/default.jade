@@ -18,6 +18,8 @@ block menu
 
          li
            a(href='/logout') logout
+         li
+           a(href='/login') login
 
 
 
@@ -28,4 +30,7 @@ block content
   #{user}
   base(href="/")
   div(ng-view) 
-
+  script data = !{JSON.stringify(user)} 
+  script sessionStorage.setItem('user', data)
+  script user = JSON.parse(sessionStorage.getItem('user'));
+  script userId = user._id;
