@@ -3,17 +3,29 @@ extend layout
 block styles
   link(rel='stylesheet', href='/static/css/menu.css')
   link(rel='stylesheet', href='/static/css/home.css')
+
 block menu
   div.menuContainer.col-xs-12
     div.itemsContainer.col-xs-10.col-xs-offset-1
       div.search.col-xs-4
       div.nav.col-xs-8
         ul.navItems
+
          li
            a(href="/") home
          li
            a(href='/my-events') events
+
+         li
+           a(href='/logout') logout
+
+
+
+
+
+
 block content
+  #{user}
   base(href="/")
   div(ng-view) 
 

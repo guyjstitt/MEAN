@@ -22,6 +22,12 @@ module.exports = function(app) {
             failureFlash: true
         }));
 
+    app.get('/profile', function(req,res){
+        res.render('profile', {
+            user: req.user
+        });
+    });
+
     app.get('/logout', users.logout);
 };
 

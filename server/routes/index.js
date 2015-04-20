@@ -3,7 +3,8 @@ module.exports = function(app) {
 
     app.get('/', function(req, res) {
 		res.render('default', 
-			{ title: 'Home'}
+			{ title: 'Home',
+				user: req.user}
 			)
 		});	
 
