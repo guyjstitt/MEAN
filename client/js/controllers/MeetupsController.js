@@ -63,10 +63,11 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','meet
   	script if(userInfo) { userId = userInfo._id; }
   	*/
 
-  	if(typeof users == "undefined") {
+  	if(users == false) {
   		window.location.href = "/login";
+  	} else {
+  		$scope.users = users;
   	}
-  	$scope.users = users;
 
 
 	$scope.userIds = [];

@@ -22,3 +22,16 @@ ul {
 	display: inline-block;
 	width: 300px;
 }
+
+.attendees {
+	display: inline-block;
+}
+
+.attendees li {
+	display: inline-block;
+}
+
+.attendees li span {
+	white-space: pre;
+}
+

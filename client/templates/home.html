@@ -12,12 +12,16 @@
         			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
         			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
         			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-        			<div class="attendees">
-        				<ul ng-repeat="attend in meetups[$index].attendees track by $index">
-        					<li>{{attend}}</li>
-        				</ul>
-        			</div>
+        			
         			<div class="follow">
+                                        <div class="attendees">
+                                                <ul>
+                                                        <li ng-repeat="people in meetups[$index].attend | limitTo:4">
+                                                                <span ng-trim ="false" ng-if="!$last">{{ people.userName  }}, </span> 
+                                                                <span ng-trim="false"ng-if="$last">and {{people.userName}} are going</span>
+                                                        </li>
+                                                </ul>
+                                        </div>
         				<div class="btn-group" role="group" aria-label="Default button group">
         					<div class="btn-default btn" ng-click="attendEvent($index, meetup._id)">Going</div>
         					<button type="button" class="btn btn-default">Maybe</button>
