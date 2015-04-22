@@ -30,8 +30,5 @@ block content
   #{user}
   base(href="/")
   div(ng-view) 
-  script userData = !{JSON.stringify(user)}
-  script if(user) { data = userData } }
-  script if(data) { sessionStorage.setItem('user', data) }
-  script if(sessionStorage.getItem('user')) { userInfo = JSON.parse(sessionStorage.getItem('user')); }
-  script if(userInfo) { userId = userInfo._id; }
+  script.
+    app.constant('users', !{user})

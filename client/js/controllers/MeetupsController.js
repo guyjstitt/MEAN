@@ -50,57 +50,70 @@ app.controller('RegisterController', ['$scope','$resource', function($scope, $re
 }]);
 
 
-app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','meetupFactory','socketio', function($scope, $resource, $routeParams, meetupFactory, socketio){
+app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','meetupFactory','socketio', 'users', function($scope, $resource, $routeParams, meetupFactory, socketio, users){
 	var Meetup = $resource('/api/meetups');
 	var Users = $resource('/users/:_id')
 	var meetup = new Meetup();
+
+	/*
+	script userData = !{JSON.stringify(user)}
+ 	script if(user) { data = userData } }
+ 	script if(data) { sessionStorage.setItem('user', data) }
+  	script if(sessionStorage.getItem('user')) { userInfo = JSON.parse(sessionStorage.getItem('user')); }
+  	script if(userInfo) { userId = userInfo._id; }
+  	*/
+
+  	if(typeof users == "undefined") {
+  		window.location.href = "/login";
+  	}
+  	$scope.users = users;
+
 
 	$scope.userIds = [];
 	$scope.attendance = [];
 	$scope.userIdsByIndex = [];
 	$scope.userInfo = [];
 	$scope.userInfoHolder = [];
-	user.index = [];
 	//list all 
 	Meetup.query({})
 	.$promise.then(function(results) {
 		$scope.meetups = results;
-		for (var i = 0; i < results.length; i++) {
-			$scope.result = results[i];
-			$scope.resultIndex = i;
-			$scope.attendees = [];
-			for (var iTwo = 0; iTwo < $scope.result.attend.length; iTwo++) {
-				var attendeeId = $scope.result.attend[iTwo];
-				var attendanceLength = $scope.result.attend.length -1;
-				$scope.attendance.push({"eventId": $scope.result._id ,"userId":attendeeId,'userName':""});
-			};
-		};
-		for (var loopIndex = 0; loopIndex < $scope.attendance.length; loopIndex++) {
-			var id = $scope.attendance[loopIndex].userId;
-			Users.get({_id: id}, function(data) {
-				$scope.userInfoHolder.push({"_id": data._id,"userName":data.name});
-				var searchTerm = data._id,
-			    index = -1;
-				for(var i = 0, len = $scope.attendance.length; i < len; i++) {
-				    if ($scope.attendance[i].userId === searchTerm) {
-				        index = i;
-				        $scope.attendance[index].userName = $scope.userInfoHolder[index].userName;
-				        console.log('check')
-				    }
-				}
+		// for (var i = 0; i < results.length; i++) {
+		// 	$scope.result = results[i];
+		// 	$scope.resultIndex = i;
+		// 	$scope.attendees = [];
+		// 	for (var iTwo = 0; iTwo < $scope.result.attend.length; iTwo++) {
+		// 		var attendeeId = $scope.result.attend[iTwo];
+		// 		var attendanceLength = $scope.result.attend.length -1;
+		// 		$scope.attendance.push({"eventId": $scope.result._id ,"userId":attendeeId,'userName':""});
+		// 	};
+		// };
+		// for (var loopIndex = 0; loopIndex < $scope.attendance.length; loopIndex++) {
+		// 	var id = $scope.attendance[loopIndex].userId;
+		// 	Users.get({_id: id}, function(data) {
+		// 		$scope.userInfoHolder.push({"_id": data._id,"userName":data.name});
+		// 		var searchTerm = data._id,
+		// 	    index = -1;
+		// 		for(var i = 0, len = $scope.attendance.length; i < len; i++) {
+		// 		    if ($scope.attendance[i].userId === searchTerm) {
+		// 		        index = i;
+		// 		        $scope.attendance[index].userName = $scope.userInfoHolder[index].userName;
+		// 		        console.log('check')
+		// 		    }
+		// 		}
 
-				for (var i = 0; i < $scope.meetups.length; i++) {
-					var eventId = $scope.meetups[i]._id;
-					$scope.meetups[i].attendees = [];
-					for (var iTwo = 0; iTwo < $scope.attendance.length; iTwo++) {
-						if($scope.attendance[iTwo].eventId == eventId) {
-							$scope.meetups[i].attendees[iTwo] = $scope.attendance[iTwo].userName;
-						}
-					};
-				};
-			});
-		}
-		console.log('check')
+		// 		for (var i = 0; i < $scope.meetups.length; i++) {
+		// 			var eventId = $scope.meetups[i]._id;
+		// 			$scope.meetups[i].attendees = [];
+		// 			for (var iTwo = 0; iTwo < $scope.attendance.length; iTwo++) {
+		// 				if($scope.attendance[iTwo].eventId == eventId) {
+		// 					$scope.meetups[i].attendees[iTwo] = $scope.attendance[iTwo].userName;
+		// 				}
+		// 			};
+		// 		};
+		// 	});
+		// }
+		// console.log('check')
 	});
 
 	console.log('check');
@@ -112,8 +125,8 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','meet
 
 	$scope.meetups = []; 	//holds initial list
 	$scope.dynamic = []; 	//holds dynamic list
-	$scope.userId = userId;
-	$scope.user = user;
+	//$scope.userId = userId;
+	//$scope.user = user;
 
 	$scope.createMeetup = function(){
 		meetup.name = $scope.meetupName;
@@ -156,9 +169,9 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','meet
 
 	$scope.attendEvent = function($index, $id) {
 		var UpdateMeetup = $resource('/api/meetups/:_id/attend', {_id:$id});
-
+		console.log($scope.users)
 		//pass the entire object to be updated
-		UpdateMeetup.save({_id: $id}, $scope.user);
+		UpdateMeetup.save({_id: $id}, $scope.users);
 
 	}
 }]);

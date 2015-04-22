@@ -98,13 +98,14 @@ router.route('/meetups/:_id/delete')
 router.route('/meetups/:_id/attend')
 	.post(function(req, res) {
 		var attend = req.body._id;
+		var name = req.body.name;
 			console.log(req.body._id);
 
 		//find it
 		Meetup.findById(req.params._id, function(err, meetup) {
 			//update it
 			meetup.update({ $push : 
-				{attend: attend}
+				{attend: { userId: attend, userName: name}}
 			}, function( err, meetupId) {
 				if(err) {
 					console.log(err);
