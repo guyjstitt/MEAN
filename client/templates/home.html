@@ -16,10 +16,12 @@
         			<div class="follow">
                                         <div class="attendees">
                                                 <ul>
-                                                        <li ng-repeat="people in meetups[$index].attend | limitTo:4">
+                                                        <div style="visibility: hidden;">{{$scope.index = $index}}</div>
+                                                        <li ng-repeat="people in meetups[$scope.index].attend  | limitTo:4">
+                                                
                                                                 <span ng-trim ="false" ng-if="$first && $last">{{ people.userName  }} is going </span>
-                                                                <span ng-trim ="false" ng-if="$first && !$last && meetups[$index].attend.length !== 2">{{ people.userName  }}, </span>
-                                                                <span ng-trim ="false" ng-if="$first && !$last && meetups[$index].attend.length == 2">{{ people.userName  }} </span>
+                                                                <span ng-trim ="false" ng-if="$first && !$last && meetups[$scope.index].attend.length !== 2">{{ people.userName  }}, </span>
+                                                                <span ng-trim ="false" ng-if="$first && !$last && meetups[$scope.index].attend.length == 2">{{ people.userName  }} </span>
                                                                 <span ng-trim ="false" ng-if="!$last && !$first">{{ people.userName  }}, </span> 
                                                                 <span ng-trim="false"ng-if="$last && !$first">and {{people.userName}} are going</span>
                                                         </li>

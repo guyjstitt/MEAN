@@ -4,19 +4,28 @@ module.exports = function(app) {
     app.get('/', function(req, res) {
     	var noUser = false;
     	console.log(req.user);
-		res.render('default', 
-			{ title: 'Home',
-				user: JSON.stringify(req.user || noUser)}
-			)
-		});	
+    	if(!(req.user)) {
+			res.redirect('/login');
+		} else {
+			console.log(req.user);
+			res.render('default', 
+				{ title: 'Home',
+					user: JSON.stringify(req.user)}
+				)
+		}
+	});	
     app.get('/my-events', function(req, res) {
 		var name = req.params.name;
 		var noUser = false;
-    	console.log(req.user);
-		res.render('default', 
-			{ title: 'temp',
-				user: JSON.stringify(req.user || noUser)}
-		)
+		if(!(req.user)) {
+			res.redirect('/login');
+		} else {
+			console.log(req.user);
+			res.render('default', 
+				{ title: 'temp',
+					user: JSON.stringify(req.user)}
+			)
+		}
 	});
 
 	app.get('/login', function(req, res) {

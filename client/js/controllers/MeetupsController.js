@@ -63,18 +63,12 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','meet
   	script if(userInfo) { userId = userInfo._id; }
   	*/
 
-  	if(users == false) {
-  		window.location.href = "/login";
-  	} else {
-  		$scope.users = users;
-  	}
-
-
 	$scope.userIds = [];
 	$scope.attendance = [];
 	$scope.userIdsByIndex = [];
 	$scope.userInfo = [];
 	$scope.userInfoHolder = [];
+	$scope.users = users;
 	//list all 
 	Meetup.query({})
 	.$promise.then(function(results) {
@@ -170,9 +164,12 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','meet
 
 	$scope.attendEvent = function($index, $id) {
 		var UpdateMeetup = $resource('/api/meetups/:_id/attend', {_id:$id});
-		console.log($scope.users)
+		var userName = $scope.users.username;
+		console.log($scope.meetups[$index].attend);
 		//pass the entire object to be updated
 		UpdateMeetup.save({_id: $id}, $scope.users);
+
+		$scope.meetups[$index].attend.push({'userName':userName});
 
 	}
 }]);

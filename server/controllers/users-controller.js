@@ -74,7 +74,7 @@ exports.register = function(req, res, next) {
 
 exports.logout = function(req, res) {
     req.logout();
-    res.redirect('/');
+    return res.redirect('/login');
 };
 
 exports.saveOAuthUserProfile = function(req, profile, done) {
