@@ -1,20 +1,62 @@
 <section>
-    <form class="form-signin" action="/register" method="post">
-        <h2 class="form-signin-heading text-center">Register</h2>
+    <div style="margin-top:50px;" class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info" >
+            <div class="panel-heading">
+                <div class="panel-title">Register</div>
+            </div>
 
-        <label for="username" class="sr-only">Username</label>
-        <input         type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+            <div style="padding-top:30px" class="panel-body" >
 
-        <label for="name" class="sr-only">Name</label>
-        <input type="text" id="name" name="name" class="form-control" placeholder="Name" required autofocus>
+                <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
 
-        <label for="email" class="sr-only">E-mail</label>
-        <input type="email" id="email" name="email" class="form-control" placeholder="E-mail" required>
+                <form action="/register" method="post" class="form-signin" role="form">
 
-        <label for="password" class="sr-only">Password</label>
-        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+                    </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-    </form>
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Name" required autofocus>
+                    </div>
+
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="E-mail" required autofocus>
+                    </div>
+
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required autofocus>
+                    </div>
+
+
+
+                    <div style="margin-top:10px" class="form-group">
+
+                        <div class="col-sm-12 controls">
+                            <button class="btn btn-success" type="submit" style="margin-bottom: 10px;">Register</button>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-12 control">
+                            <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                                Already have an account?
+                                <a href="/login">
+                                    Login
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+
+            </div>
+        </div>
+    </div>
 
 </section>

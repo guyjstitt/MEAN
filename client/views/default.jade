@@ -5,21 +5,19 @@ block styles
   link(rel='stylesheet', href='/static/css/home.css')
 
 block menu
-  div.menuContainer.col-xs-12
-    div.itemsContainer.col-xs-10.col-xs-offset-1
-      div.search.col-xs-4
-      div.nav.col-xs-8
-        ul.navItems
+  nav.navbar.navbar-inverse.navbar-fixed-top
+    div.menuContainer.col-xs-12
+        div.navbar-header
+            a.navbar-brand(href="/") Pied Piper
+        div.collapse.navbar-collapse
+            ul.navItems
+                li(class="menuLink")
+                    a(href='/') home
+                li(class="menuLink")
+                    a(href='/my-events') events
+                li(class="menuLink")
+                    a(ng-click="logout()" href="") logout
 
-         li
-           a(href="/") home
-         li
-           a(href='/my-events') events
-
-         li
-           a(ng-click="logout()") logout
-         li
-           a(href='/login') login
 
 
 
