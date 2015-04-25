@@ -19,7 +19,7 @@ app.config(function($routeProvider, $locationProvider) {
 		templateUrl: 'login.html'
 	})
 	.when('/profile',{
-		controller: '',
+		controller: 'ProfileController',
 		templateUrl: '/profile.html'
 	})
 	.when('/register', {
