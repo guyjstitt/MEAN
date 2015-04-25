@@ -1,1 +1,6 @@
-div Hello #{user}
+extend layout
+block content
+  base(href="/")
+  div(ng-view) 
+  script.
+    app.constant('users', !{user})
