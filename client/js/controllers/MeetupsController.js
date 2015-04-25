@@ -164,12 +164,44 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','meet
 
 	$scope.attendEvent = function($index, $id) {
 		var UpdateMeetup = $resource('/api/meetups/:_id/attend', {_id:$id});
-		var userName = $scope.user.username;
+		var userName = $scope.user.name;
+		var userId = $scope.user._id;
+		var userExists = false;
 		console.log($scope.meetups[$index].attend);
 		//pass the entire object to be updated
-		UpdateMeetup.save({_id: $id}, $scope.user);
+		UpdateMeetup.save({_id: $id}, $scope.user, function(data) {
 
-		$scope.meetups[$index].attend.push({'userName':userName});
+		});
+
+		for (var i = 0; i < $scope.meetups[$index].attend.length; i++) {
+			if($scope.meetups[$index].attend[i].userId == userId) {
+				userExists = true;
+			}
+		}
+		if(!(userExists)) {
+			$scope.meetups[$index].attend.push({'userId': userId,'userName':userName});
+		} else {
+			alert("You are already attending this event.");
+		}
+
+	}
+
+	$scope.unattendEvent = function($index, $id) {
+		var UpdateMeetup = $resource('/api/meetups/:_id/attend', {_id:$id});
+		var userId = $scope.user._id;
+		var attendeeIndex;
+
+		UpdateMeetup.delete({_id: $id, userId: userId}, function(data) {
+			//$scope.meetups[$index].attend.splice(i,1);
+			for (var i = 0; i < $scope.meetups[$index].attend.length; i++) {
+				if($scope.meetups[$index].attend[i].userId == $scope.user._id) {
+					attendeeIndex = i;
+					console.log(attendeeIndex);
+					break;
+				}
+			};
+			$scope.meetups[$index].attend.splice(i,1);
+		});
 
 	}
 }]);

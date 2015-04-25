@@ -22,8 +22,7 @@
               </div>
     				<div class="btn-group" role="group" aria-label="Default button group">
     					<div class="btn-default btn" ng-click="attendEvent($index, meetup._id)">Going</div>
-    					<button type="button" class="btn btn-default">Maybe</button>
-    					<button type="button" class="btn btn-default">No Going</button>
+    					<button type="button" class="btn btn-default" ng-click="unattendEvent($index, meetup._id)">Not Going</button>
     				</div>
     			</div>
     		</div>	

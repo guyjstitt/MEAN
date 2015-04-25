@@ -101,22 +101,43 @@ router.route('/meetups/:_id/delete')
 	});
 
 router.route('/meetups/:_id/attend')
+	.delete(function(req, res) {
+		var id = req.body._id;
+		var userId = req.query.userId;
+
+		Meetup.findById(req.params._id, function(err, meetup) {
+			console.log(userId);
+			meetup.update({
+				$pull: {"attend": {"userId": userId}}
+			},
+			{ multi: true },
+				function(err, meetupId) {
+					if(err) {
+						console.log(err);
+					} else {
+						res.send('successfully removed ' + userId);
+					}
+				}
+			)
+		})
+
+	})
 	.post(function(req, res) {
 		var attend = req.body._id;
 		var name = req.body.name;
 			console.log(req.body._id);
-
+		var added = {attend: { userId: attend, userName: name}};
 		//find it
 		Meetup.findById(req.params._id, function(err, meetup) {
 			//update it
-			meetup.update({ $push : 
-				{attend: { userId: attend, userName: name}}
+			meetup.update({ 
+				$addToSet : added 
 			}, function( err, meetupId) {
 				if(err) {
 					console.log(err);
 				} else {
 					console.log('successfully added' + attend + "to meetup");
-					res.send("finished");
+					console.log(added);
 				}
 			});
 		});
