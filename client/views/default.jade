@@ -12,11 +12,13 @@ block menu
         div.collapse.navbar-collapse
             ul.navItems
                 li(class="menuLink")
-                    a(href='/') home
+                    a(href='/') Home
                 li(class="menuLink")
-                    a(href='/my-events') events
+                    a(href='/profile') Profile                    
                 li(class="menuLink")
-                    a(ng-click="logout()" href="") logout
+                    a(href='/my-events') Events
+                li(class="menuLink")
+                    a(ng-click="logout()" href="") Logout
 
 
 

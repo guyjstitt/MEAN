@@ -28,6 +28,21 @@ module.exports = function(app) {
 		}
 	});
 
+    app.get('/profile', function(req, res) {
+		var name = req.params.name;
+		var noUser = false;
+		if(!(req.user)) {
+			res.redirect('/login');
+		} else {
+			console.log(req.user);
+			res.render('default', 
+				{ title: 'Profile',
+					user: JSON.stringify(req.user)}
+			)
+		}
+	});
+
+
 	app.get('/login', function(req, res) {
 		var name = req.params.name;
 		res.render('login', 
