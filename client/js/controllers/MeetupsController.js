@@ -68,7 +68,7 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','meet
 	$scope.userIdsByIndex = [];
 	$scope.userInfo = [];
 	$scope.userInfoHolder = [];
-	$scope.users = users;
+	$scope.user = users;
 	//list all 
 	Meetup.query({})
 	.$promise.then(function(results) {
@@ -126,6 +126,7 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','meet
 	$scope.createMeetup = function(){
 		meetup.name = $scope.meetupName;
 		meetup.dek = $scope.meetupDek;
+		meetup.user = $scope.user;
 		meetup.$save(function	(result){
 			$scope.meetupName = '';
 			$scope.meetupDek = '';
@@ -163,10 +164,10 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','meet
 
 	$scope.attendEvent = function($index, $id) {
 		var UpdateMeetup = $resource('/api/meetups/:_id/attend', {_id:$id});
-		var userName = $scope.users.username;
+		var userName = $scope.user.username;
 		console.log($scope.meetups[$index].attend);
 		//pass the entire object to be updated
-		UpdateMeetup.save({_id: $id}, $scope.users);
+		UpdateMeetup.save({_id: $id}, $scope.user);
 
 		$scope.meetups[$index].attend.push({'userName':userName});
 

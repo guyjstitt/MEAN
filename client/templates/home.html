@@ -4,37 +4,30 @@
 		<h1 class="text-center">There are {{meetups.length}} events</h1>
 		<ul class="eventList">
  			<li ng-repeat="meetup in meetups">
-        		<div class="panel panel-default">
-        			<div class="panel-heading"href=""  ng-click="viewMeetup(meetup._id, $index);">{{meetup.name}}</div>
-        			<div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-        			
-        			<div class="follow">
-                                        <div class="attendees">
-                                                <ul>
-                                                        <div style="visibility: hidden;">{{$scope.index = $index}}</div>
-                                                        <li ng-repeat="people in meetups[$scope.index].attend  | limitTo:4">
-                                                
-                                                                <span ng-trim ="false" ng-if="$first && $last">{{ people.userName  }} is going </span>
-                                                                <span ng-trim ="false" ng-if="$first && !$last && meetups[$scope.index].attend.length !== 2">{{ people.userName  }}, </span>
-                                                                <span ng-trim ="false" ng-if="$first && !$last && meetups[$scope.index].attend.length == 2">{{ people.userName  }} </span>
-                                                                <span ng-trim ="false" ng-if="!$last && !$first">{{ people.userName  }}, </span> 
-                                                                <span ng-trim="false"ng-if="$last && !$first">and {{people.userName}} are going</span>
-                                                        </li>
-                                                </ul>
-                                        </div>
-        				<div class="btn-group" role="group" aria-label="Default button group">
-        					<div class="btn-default btn" ng-click="attendEvent($index, meetup._id)">Going</div>
-        					<button type="button" class="btn btn-default">Maybe</button>
-        					<button type="button" class="btn btn-default">No Going</button>
-        				</div>
-        			</div>
-        		</div>	
-        	</li>
+    		<div class="panel panel-default">
+    			<div class="panel-heading"href=""  ng-click="viewMeetup(meetup._id, $index);">{{meetup.name}}</div>
+    			<div class="panel-body">{{meetup.dek}}</div>
+    			<div class="follow">
+              <div class="attendees">
+                <ul>
+                  <div style="visibility: hidden;">{{$scope.index = $index}}</div>
+                  <li ng-repeat="people in meetups[$scope.index].attend  | limitTo:4">
+                    <span ng-trim ="false" ng-if="$first && $last"><span ng-click="profileModal(people.userId)">{{ people.userName }}</span> is going </span>
+                    <span ng-trim ="false" ng-if="$first && !$last && meetups[$scope.index].attend.length !== 2">{{ people.userName  }}, </span>
+                    <span ng-trim ="false" ng-if="$first && !$last && meetups[$scope.index].attend.length == 2">{{ people.userName  }} </span>
+                    <span ng-trim ="false" ng-if="!$last && !$first">{{ people.userName  }}, </span> 
+                    <span ng-trim="false"ng-if="$last && !$first">and {{people.userName}} are going</span>
+                  </li>
+                </ul>
+              </div>
+    				<div class="btn-group" role="group" aria-label="Default button group">
+    					<div class="btn-default btn" ng-click="attendEvent($index, meetup._id)">Going</div>
+    					<button type="button" class="btn btn-default">Maybe</button>
+    					<button type="button" class="btn btn-default">No Going</button>
+    				</div>
+    			</div>
+    		</div>	
+    	</li>
 		</ul>
 	</div>
 </section>

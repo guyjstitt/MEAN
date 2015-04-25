@@ -5,5 +5,6 @@ module.exports = mongoose.model('Meetup', {
 	dek: String,
 	host: Number,
 	users: [{id: Number}],
+	host: {id:String, username: String, name: String, email: String, password: String},
 	attend: Array
 });
