@@ -21,6 +21,7 @@ router.route('/meetups')
 	.post(function(req, res) {
 		var meetup = new Meetup();
 		meetup.name = req.body.name;
+		meetup.dek = req.body.dek;
 		meetup.attend = req.body.attend;
 
 		meetup.save(function(err, result) {
@@ -61,13 +62,15 @@ router.route('/meetups/:_id/edit')
 	})
 	.post(function(req, res) {
 		var name = req.body.name;
+		var dek = req.body.dek;
 		console.log(req.body);
 
 		//find it
 		Meetup.findById(req.params._id, function(err, meetup) {
 			//update it
 			meetup.update({
-				name: name
+				name: name,
+				dek: dek
 			}, function( err, meetupId) {
 				if(err) {
 					console.log(err);

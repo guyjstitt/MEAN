@@ -2,38 +2,47 @@
 	<!-- Meetups View -->
 	<div ng-controller="MeetupsController">
 		<h1 class="text-center">There are {{meetups.length}} events</h1>
-		<form ng-submit="createMeetup()">
-			<input type="text" placeholder="Meetup Name" ng-model="meetupName">
-			<button type="submit">Add</button>
-		</form>
-		<ul class="eventList">
- 			<li ng-repeat="meetup in meetups">
-        		<div class="panel panel-default">
-        			<div class="panel-heading"href=""  ng-click="viewMeetup(meetup._id, $index);">
-        				<div ng-hide="editing">{{meetup.name}}</div>
-        				<input ng-show="editing" type="text" ng-model="dynamic[$index].name"></input>
-        				<div class="actions">
-		        			<a href="" ng-click="deleteMeetup(meetup._id, $index)">Delete </a> | 
-		        			<a href="" ng-hide="editing" ng-click="editMeetup(meetup._id, $index); editing = !editing;">Edit</a>
-		        			<a href="" ng-show="editing" ng-click="editing = !editing; updateMeetup(meetup._id, $index)">Save</a>
-		        		</div>	
-        			</div>
-        			<div class="panel-body" ng-hide="editing">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-        			<div class="panel-body" ng-show="editing">
-        				<textarea class="editEvent">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
-        			</div>
-        		</div>	
-        	</li>
-		</ul>
+      <form id="addEvent" ng-submit="createMeetup()">
+      <div class="row">
+        <div class="input-group title">
+          <span class="input-group-addon" id="basic-addon1">Event Title</span>
+          <input type="text" class="form-control" placeholder="Add Event Title.." aria-describedby="basic-addon1" ng-model="meetupName">
+        </div>
+      </div>
+      <div class ="row">
+        <div class="input-group message">
+          <span class="input-group-addon messageHed" id="basic-addon1">Event Info</span>
+          <textarea class="form-control messageDek" placeholder="Add Event Info.." aria-describedby="basic-addon1" ng-model="meetupDek"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="submitEvent">
+          <button class="btn btn-default">Submit</button>
+        </div>
+      </div>
+      </form>
+      <div class="row">
+        <ul class="eventList">
+          <li ng-repeat="meetup in meetups">
+              <div class="panel panel-default">
+                <div class="panel-heading"href=""  ng-click="viewMeetup(meetup._id, $index);">
+                  <div ng-hide="editing">{{meetup.name}}</div>
+                  <input ng-show="editing" type="text" ng-model="meetups[$index].name"></input>
+                  <div class="actions">
+                    <a href="" ng-click="deleteMeetup(meetup._id, $index)">Delete </a> | 
+                    <a href="" ng-hide="editing" ng-click="editMeetup(meetup._id, $index); editing = !editing;">Edit</a>
+                    <a href="" ng-show="editing" ng-click="editing = !editing; updateMeetup(meetup._id, $index)">Save</a>
+                  </div>  
+                </div>
+                <div class="panel-body" ng-hide="editing">
+                    {{meetup.dek}}
+                </div>
+                <div class="panel-body" ng-show="editing">
+                  <textarea class="editEvent" ng-model="meetups[$index].dek"></textarea>
+                </div>
+              </div>  
+            </li>
+        </ul>
+      </div>
 	</div>
 </section>

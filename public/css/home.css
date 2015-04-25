@@ -35,3 +35,46 @@ ul {
 	white-space: pre;
 }
 
+#addEvent .input-group span.messageHed {
+  height: 34px;
+  display: block;
+  border-radius: 4px 4px 0 0 !important;
+}
+
+#addEvent .title {
+	margin-bottom: 20px;
+}
+
+
+#addEvent .input-group span.messageHed, #addEvent .input-group.message {
+  width: 100%;
+  line-height: 23px;
+}
+
+#addEvent .input-group textarea.messageDek {
+  height: 300px;
+  border-radius: 0 0  4px 4px !important;
+  background-color: transparent;
+}
+
+#addEvent .btn {
+  margin-top: 20px;
+}
+
+.eventList {
+	padding: 0;
+}
+
+.submitEvent {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.submitEvent button {
+	width: 100px;
+	display: inline-block;
+}
+
+.input-group-addon {
+	border-right: 1px solid #ccc !important;
+}

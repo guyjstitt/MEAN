@@ -125,8 +125,10 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','meet
 
 	$scope.createMeetup = function(){
 		meetup.name = $scope.meetupName;
+		meetup.dek = $scope.meetupDek;
 		meetup.$save(function	(result){
 			$scope.meetupName = '';
+			$scope.meetupDek = '';
 		});
 	}
 
@@ -154,9 +156,6 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','meet
 
 	$scope.updateMeetup = function($id, $index) {
 		var UpdateMeetup = $resource('/api/meetups/:_id/edit', {_id:$id});
-
-		//update the name of the initial list
-		$scope.meetups[$index].name = $scope.dynamic[$index].name;
 
 		//pass the entire object to be updated
 		UpdateMeetup.save({_id: $id}, $scope.meetups[$index]);
