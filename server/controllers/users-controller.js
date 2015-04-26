@@ -138,7 +138,18 @@ exports.list = function(req, res, next) {
 };
 
 exports.read = function(req, res) {
-    res.json();
+    User.findOne({
+            _id: req.params.userId
+        },
+        function(err, user) {
+            if (err) {
+                return err;
+            }
+            else {
+                res.json(user);
+            }
+        }
+    );
 };
 
 exports.userByID = function(req, res, next, id) {

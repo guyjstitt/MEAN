@@ -13,7 +13,8 @@ var UserSchema = new Schema({
     password: String,
     provider: String,
     providerId: String,
-    providerData: {}
+    providerData: {},
+    events: Array
 });
 
 UserSchema.pre('save',

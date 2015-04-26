@@ -142,5 +142,6 @@ router.route('/meetups/:_id/attend')
 			});
 		});
 	});
+	
 
 module.exports = router;

@@ -65,6 +65,11 @@ ul {
 	padding: 0;
 }
 
+.navItems {
+	padding: 0;
+	min-width: 260px;
+}
+
 .submitEvent {
 	text-align: center;
 	margin-bottom: 20px;

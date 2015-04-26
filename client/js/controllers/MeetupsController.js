@@ -46,6 +46,7 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','sock
 	$scope.userInfo = [];
 	$scope.userInfoHolder = [];
 	$scope.user = users;
+	$scope.user.events = [];
 	//list all 
 	Meetup.query({})
 	.$promise.then(function(results) {
@@ -63,10 +64,12 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','sock
 		meetup.name = $scope.meetupName;
 		meetup.dek = $scope.meetupDek;
 		meetup.user = $scope.user;
+		$scope.user.events.push({eventName: meetup.name, eventDek: meetup.dek});
 		meetup.$save(function	(result){
 			$scope.meetupName = '';
 			$scope.meetupDek = '';
 		});
+		Users.save({_id: $scope.user._id}, $scope.user);
 	}
 
 	$scope.deleteMeetup = function($id, $index) {
