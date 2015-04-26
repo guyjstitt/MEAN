@@ -1,4 +1,6 @@
 extend layout
 block content
-  base(href="/")
-  div(ng-view)
+  base(href="/register")
+  -for(var i in messages)
+    .alert.alert-danger !{messages[i]}
+  include ../templates/register.html
