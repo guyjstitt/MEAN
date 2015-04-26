@@ -25,6 +25,7 @@ router.route('/meetups')
 		meetup.attend = req.body.attend;
 		meetup.host.name = req.body.user.name;
 		meetup.host.id = req.body.user._id;
+		meetup.attend = [];
 
 		meetup.save(function(err, result) {
 			if(err) {

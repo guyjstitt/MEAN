@@ -103,7 +103,6 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','sock
 		var userName = $scope.user.name;
 		var userId = $scope.user._id;
 		var userExists = false;
-		console.log($scope.meetups[$index].attend);
 		//pass the entire object to be updated
 		UpdateMeetup.save({_id: $id}, $scope.user, function(data) {
 
