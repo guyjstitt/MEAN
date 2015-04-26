@@ -43,10 +43,5 @@ module.exports = function(app) {
 	});
 
 
-	app.get('/login', function(req, res) {
-		var name = req.params.name;
-		res.render('login', 
-			{ title: 'login'}
-		)
-	});
+
 };

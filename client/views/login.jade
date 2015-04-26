@@ -2,5 +2,7 @@ extend layout
 block content
   base(href="/login")
   -for(var i in messages)
-    .div.flash !{messages[i]}
+    .alert.alert-danger
+      span.glyphicon.glyphicon-exclamation-sign
+      !{messages[i]}
   include ../templates/login.html
