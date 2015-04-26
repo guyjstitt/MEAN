@@ -1,4 +1,6 @@
 extend layout
 block content
-  base(href="/")
-  div(ng-view)
+  base(href="/login")
+  -for(var i in messages)
+    .div.flash !{messages[i]}
+  include ../templates/login.html

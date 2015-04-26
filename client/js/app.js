@@ -23,3 +23,5 @@ app.config(function($routeProvider, $locationProvider) {
 		templateUrl: 'register.html'
 	});
 });
+
+
