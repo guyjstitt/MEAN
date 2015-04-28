@@ -36,7 +36,7 @@ ul {
 }
 
 #addEvent .input-group span.messageHed {
-  height: 34px;
+  height: 44px;
   display: block;
   border-radius: 4px 4px 0 0 !important;
 }
@@ -48,13 +48,13 @@ ul {
 
 #addEvent .input-group span.messageHed, #addEvent .input-group.message {
   width: 100%;
-  line-height: 23px;
+  line-height: 22px;
 }
 
 #addEvent .input-group textarea.messageDek {
   height: 300px;
   border-radius: 0 0  4px 4px !important;
-  background-color: transparent;
+  background-color: white;
 }
 
 #addEvent .btn {
@@ -80,6 +80,6 @@ ul {
 	display: inline-block;
 }
 
-.input-group-addon {
+.input-group-addon:not(.messageTextArea) {
 	border-right: 1px solid #ccc !important;
 }

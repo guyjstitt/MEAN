@@ -5,7 +5,6 @@
 
 .menuContainer {
 	height: 60px;
-	background-color: #3a5795;
 }
 
 .menuWrapper .itemsContainer {
@@ -30,7 +29,7 @@
 .navItems li {
 	height: 100%;
 	display: inline-block;
-	width: 65px;
+	width: 60px;
 	line-height: 60px;
 	color: white;
 	text-transform: uppercase;
