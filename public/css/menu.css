@@ -93,3 +93,9 @@
 	color: white !important;
 	background-color: transparent !important;
 }
+
+@media screen and (max-width: 768px) {
+	.verticalLine{
+		border-left: 0px solid yellow; !important;
+	}
+}
