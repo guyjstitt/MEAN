@@ -117,3 +117,15 @@
 .dropDownMenuItems{
 	text-align: center !important;
 }
+
+.circle{
+	-webkit-border-radius:12px;
+	-moz-border-radius:12px;
+	border-radius:12px;
+	border:1px solid #ccc;
+	width:12px;
+	height:12px;
+	background-color: #464545;
+	padding: 3px;
+}
+

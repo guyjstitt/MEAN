@@ -34,7 +34,6 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','sock
 	$scope.userInfo = [];
 	$scope.userInfoHolder = [];
 	$scope.user = users;
-	$scope.user.events = [];
 	//list all 
 	Meetup.query({})
 	.$promise.then(function(results) {
@@ -96,6 +95,7 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','sock
 		meetup.delete({}, 
 			function(data) {
 			//deleted on emit deletedMeetup
+				$scope.user.events.splice($index, 1);
 		}, 
 			function(err) {
 				alert('Event could not be deleted!')
