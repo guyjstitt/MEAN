@@ -46,6 +46,26 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','sock
 		$scope.meetups.push(msg);
 	});
 
+	socketio.on('attend', function(res) {
+		for (var i = 0; i < $scope.meetups.length; i++) {
+			if ($scope.meetups[i]._id == res.meetupId) {
+				$scope.meetups[i].attend.push(res);
+			}
+		};
+	});
+
+	socketio.on('unattend', function(res) {
+		for (var i = 0; i < $scope.meetups.length; i++) {
+			if ($scope.meetups[i]._id == res.meetupId) {
+				for (var index = 0; index < $scope.meetups[i].attend.length; index++) {
+					if ($scope.meetups[i].attend[index].userId == res.userId) {
+						$scope.meetups[i].attend.splice(index, 1);
+					}
+				};
+			}
+		};
+	});
+
 	//delete meetup from array when deleted from db
 	socketio.on('deleteMeetup', function(meetup) {
 		for (var i = 0; i < $scope.meetups.length; i++) {
@@ -101,18 +121,19 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','sock
 		var userName = $scope.user.name;
 		var userId = $scope.user._id;
 		var userExists = false;
-		//pass the entire object to be updated
-		UpdateMeetup.save({_id: $id}, $scope.user, function(data) {
-
-		});
+		var meetupId = $scope.meetups[$index]._id;
 
 		for (var i = 0; i < $scope.meetups[$index].attend.length; i++) {
 			if($scope.meetups[$index].attend[i].userId == userId) {
 				userExists = true;
 			}
 		}
+		
 		if(!(userExists)) {
-			$scope.meetups[$index].attend.push({'userId': userId,'userName':userName});
+			//pass the entire object to be updated
+			UpdateMeetup.save({_id: $id, meetupId: meetupId}, $scope.user, function(data) {
+
+			});
 		} else {
 			alert("You are already attending this event.");
 		}
@@ -125,15 +146,7 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','sock
 		var attendeeIndex;
 
 		UpdateMeetup.delete({_id: $id, userId: userId}, function(data) {
-			//$scope.meetups[$index].attend.splice(i,1);
-			for (var i = 0; i < $scope.meetups[$index].attend.length; i++) {
-				if($scope.meetups[$index].attend[i].userId == $scope.user._id) {
-					attendeeIndex = i;
-					console.log(attendeeIndex);
-					break;
-				}
-			};
-			$scope.meetups[$index].attend.splice(i,1);
+			//handled in unattend event 
 		});
 
 	}

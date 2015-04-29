@@ -66,8 +66,7 @@ router.route('/meetups/:_id/edit')
 	.post(function(req, res) {
 		var name = req.body.name;
 		var dek = req.body.dek;
-		console.log(req.body);
-
+		
 		//find it
 		Meetup.findById(req.params._id, function(err, meetup) {
 			//update it
@@ -106,6 +105,7 @@ router.route('/meetups/:_id/attend')
 	.delete(function(req, res) {
 		var id = req.body._id;
 		var userId = req.query.userId;
+		var meetupIdAndUser = {"meetupId":req.params._id, "userId": req.query.userId, "name": req.body.name};
 
 		Meetup.findById(req.params._id, function(err, meetup) {
 			console.log(userId);
@@ -117,6 +117,7 @@ router.route('/meetups/:_id/attend')
 					if(err) {
 						console.log(err);
 					} else {
+						io.emit('unattend', meetupIdAndUser)
 						res.send('successfully removed ' + userId);
 					}
 				}
@@ -127,19 +128,19 @@ router.route('/meetups/:_id/attend')
 	.post(function(req, res) {
 		var attend = req.body._id;
 		var name = req.body.name;
-			console.log(req.body._id);
+	 	var meetupIdAndUser = {"meetupId":req.query.meetupId, "userName": name, "userId": attend};
 		var added = {attend: { userId: attend, userName: name}};
 		//find it
 		Meetup.findById(req.params._id, function(err, meetup) {
 			//update it
 			meetup.update({ 
 				$addToSet : added 
-			}, function( err, meetupId) {
+			}, function( err, meetup) {
 				if(err) {
 					console.log(err);
 				} else {
-					console.log('successfully added' + attend + "to meetup");
-					console.log(added);
+					io.emit('attend', meetupIdAndUser);
+					return 'successfully added' + attend + "to meetup";
 				}
 			});
 		});
