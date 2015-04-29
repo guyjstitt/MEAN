@@ -5,20 +5,21 @@ block styles
   link(rel='stylesheet', href='/static/css/home.css')
 
 block menu
-  nav.navbar.navbar-inverse.navbar-fixed-top
-    div.menuContainer.col-xs-12
-        div.navbar-header.col-xs-3
-            a.navbar-brand(href="/") Pied Piper
-        div.col-xs-9
-            ul.navItems
-                li(class="menuLink")
-                    a(href='/') Home
-                li(class="menuLink")
-                    a(href='/profile') Profile                    
-                li(class="menuLink")
-                    a(href='/my-events') Events
-                li(class="menuLink")
-                    a(ng-click="logout()" href="") Logout
+  nav.navbar.navbar-fixed-top.navBarColor
+    div.container.col-md-12
+        div.navbar-header.col-md-2
+            a.navbar-brand(href="/" style="color: white") Pied Piper
+        div.col-md-4
+                ul.nav.navbar-nav
+                    li.menuItems
+                        a(href='/') Home
+                    li.menuItems
+                        a(href='/profile') Profile
+                    li.menuItems
+                        a(href='/my-events') Events
+                    li.menuItems.verticalLine
+                        a(ng-click="logout()" href="")
+                            i.glyphicon.glyphicon-log-out
 
 
 

@@ -20,6 +20,11 @@
 	height: 100%;
 }
 
+.navBarColor{
+	background-color: #375a7f;
+	border-color: transparent;
+}
+
 .navItems {
 	height: 100%;
 	float: right;
@@ -38,4 +43,33 @@
 
 .navItems li a {
 	color: white;
+}
+
+
+.menuItems {
+	float: right;
+}
+
+.menuItems a {
+	color: white;
+}
+
+.menuItems a:hover{
+	color: white;
+}
+
+.menuItems a:focus{
+	color: white;
+}
+
+.col-md-4{
+	float: right !important
+}
+
+.verticalLine {
+	border-left: 2px solid #464545;
+}
+
+.verticalLineRight{
+	border-right: 2px solid #464545;
 }
