@@ -25,7 +25,8 @@ app.factory('socketio', ['$rootScope', function ($rootScope) {
 
 app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','socketio', 'users', function($scope, $resource, $routeParams, socketio, users){
 	var Meetup = $resource('/api/meetups');
-	var Users = $resource('/users/:_id')
+	var Users = $resource('/users/:_id');
+	var MeetupsHostedByUser = $resource('/api/meetups/user/:_id');
 	var meetup = new Meetup();
 
 	$scope.userIds = [];
@@ -40,9 +41,14 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','sock
 		$scope.meetups = results;
 	});
 
+	MeetupsHostedByUser.query({_id:$scope.user._id}, function(result) {
+		$scope.meetupsHostedByUser = result;
+	});
+
 	//add meetup to array when added to db
 	socketio.on('meetup', function(msg) {
 		$scope.meetups.push(msg);
+		$scope.meetupsHostedByUser.push(msg);
 	});
 
 	socketio.on('attend', function(res) {
@@ -71,6 +77,12 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','sock
 			if($scope.meetups[i]._id == meetup._id) {
 				$scope.meetups.splice(i,1);
 			} 
+		};
+
+		for (var i = 0; i < $scope.meetupsHostedByUser.length; i++) {
+			if($scope.meetupsHostedByUser[i]._id == meetup._id) {
+				$scope.meetupsHostedByUser.splice(i,1);
+			}
 		};
 
 	});
@@ -114,6 +126,13 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','sock
 
 		//pass the entire object to be updated
 		UpdateMeetup.save({_id: $id}, $scope.meetups[$index]);
+	}
+
+	$scope.updateMeetupHostedByUser = function($id, $index) {
+		var UpdateMeetup = $resource('/api/meetups/:_id/edit', {_id:$id});
+
+		//pass the entire object to be updated
+		UpdateMeetup.save({_id: $id}, $scope.meetupsHostedByUser[$index]);
 	}
 
 	$scope.attendEvent = function($index, $id) {

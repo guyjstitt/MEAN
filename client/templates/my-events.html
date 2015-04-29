@@ -1,7 +1,7 @@
 <section >
 	<!-- Meetups View -->
 	<div ng-controller="MeetupsController">
-		<h1 class="text-center">There are {{meetups.length}} events</h1>
+		<h1 class="text-center">There are {{meetupsHostedByUser.length}} events</h1>
       <form id="addEvent" ng-submit="createMeetup()">
         <div class="input-group title">
           <span class="input-group-addon" id="basic-addon1">Event Title</span>
@@ -16,22 +16,22 @@
         </div>
       </form>
       <ul class="eventList">
-        <li ng-repeat="meetup in meetups">
+        <li ng-repeat="meetup in meetupsHostedByUser">
             <div class="panel panel-default">
               <div class="panel-heading"href=""  ng-click="viewMeetup(meetup._id, $index);">
                 <div ng-hide="editing">{{meetup.name}}</div>
-                <input ng-show="editing" type="text" ng-model="meetups[$index].name"></input>
+                <input ng-show="editing" type="text" ng-model="meetupsHostedByUser[$index].name"></input>
                 <div class="actions">
                   <a href="" ng-click="deleteMeetup(meetup._id, $index)">Delete </a> | 
                   <a href="" ng-hide="editing" ng-click="editMeetup(meetup._id, $index); editing = !editing;">Edit</a>
-                  <a href="" ng-show="editing" ng-click="editing = !editing; updateMeetup(meetup._id, $index)">Save</a>
+                  <a href="" ng-show="editing" ng-click="editing = !editing; updateMeetupHostedByUser(meetup._id, $index)">Save</a>
                 </div>  
               </div>
               <div class="panel-body" ng-hide="editing">
                   {{meetup.dek}}
               </div>
               <div class="panel-body" ng-show="editing">
-                <textarea class="editEvent" ng-model="meetups[$index].dek"></textarea>
+                <textarea class="editEvent" ng-model="meetupsHostedByUser[$index].dek"></textarea>
               </div>
             </div>  
           </li>

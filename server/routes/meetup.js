@@ -52,6 +52,18 @@ router.route('/meetups')
 		});
 	});
 
+router.route('/meetups/user/:_id') 
+	.get(function(req,res) {
+		console.log(req.params)
+		Meetup.find({"host.id": req.params._id}, function(err, meetup) {
+				if(err) {
+					console.log(err);
+				} else {
+					res.json(meetup);
+				}
+			})
+	})
+
 router.route('/meetups/:_id/edit')
 	.get(function(req, res) {
 		 Meetup.findById(req.params._id ,function(err, meetup) {
@@ -59,7 +71,7 @@ router.route('/meetups/:_id/edit')
 				return console.error(err);
 			} else {
 				console.log('edit successful', meetup);
-				res.json(meetup);
+				res.send(meetup);
 			}
 		});
 	})
