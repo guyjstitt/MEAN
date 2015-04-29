@@ -56,7 +56,16 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','sock
 	console.log('check');
 	socketio.on('meetup', function(msg) {
 		$scope.meetups.push(msg);
-	})
+	});
+
+	socketio.on('deleteMeetup', function(meetup) {
+		for (var i = 0; i < $scope.meetups.length; i++) {
+			if($scope.meetups[i]._id == meetup._id) {
+				$scope.meetups.splice(i,1);
+			} 
+		};
+
+	});
 
 	$scope.meetups = []; 	//holds initial list
 
@@ -76,8 +85,7 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','sock
 		var meetup = $resource('/api/meetups/:_id/delete', {_id:$id});
 		meetup.delete({}, 
 			function(data) {
-			//remove from inital array
-			$scope.meetups.splice($index,1);
+			//deleted on emit deletedMeetup
 		}, 
 			function(err) {
 				console.log(err);

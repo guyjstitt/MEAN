@@ -94,6 +94,7 @@ router.route('/meetups/:_id/delete')
 					if(err) {
 						console.error(err);
 					} else {
+						io.emit('deleteMeetup', meetup);
 						return res.send("deleted " + meetup._id);
 					}
 				})
