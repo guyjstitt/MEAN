@@ -3,7 +3,7 @@
 	<div>
 		<h1 class="text-center">There are {{meetups.length}} events</h1>
 		<ul class="eventList">
- 			<li ng-repeat="meetup in meetups">
+ 			<li  dir-paginate="meetup in meetups | itemsPerPage: 5">
     		<div class="panel panel-default">
     			<div class="panel-heading"href=""  ng-click="viewMeetup(meetup._id, $index);">Event Name: {{meetup.name}} | Hosted By: {{meetup.host.name}} </div>
     			<div class="panel-body">{{meetup.dek}}</div>
@@ -28,6 +28,14 @@
     		</div>	
     	</li>
 		</ul>
+    <dir-pagination-controls
+    [max-size=""]
+    [direction-links=""]
+    [boundary-links=""]
+    [on-page-change=""]
+    [pagination-id=""]
+    [template-url=""]>
+    </dir-pagination-controls>
 	</div>
 </section>
 

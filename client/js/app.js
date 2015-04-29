@@ -1,4 +1,4 @@
-var app = angular.module('meetupApp', ['ngResource','ngRoute']);
+var app = angular.module('meetupApp', ['ngResource','ngRoute','angularUtils.directives.dirPagination']);
 
 app.config(function($routeProvider, $locationProvider) {
 	$locationProvider.html5Mode(true);

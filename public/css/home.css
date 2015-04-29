@@ -87,3 +87,15 @@ h1 {
 .input-group-addon:not(.messageTextArea) {
 	border-right: 1px solid #ccc !important;
 }
+
+.pagination > li > a {
+	background-color: #375a7f !important;
+}
+
+.pagination > .active > a {
+	background-color: #464545 !important;
+}
+
+.pagination {
+	float: right;
+}
