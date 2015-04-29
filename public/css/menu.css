@@ -88,3 +88,8 @@
 	color: white !important;
 	background-color: #464545 !important;;
 }
+
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus{
+	color: white !important;
+	background-color: transparent !important;
+}
