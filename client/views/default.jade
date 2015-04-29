@@ -5,23 +5,7 @@ block styles
   link(rel='stylesheet', href='/static/css/home.css')
 
 block menu
-  nav.navbar.navbar-fixed-top.navBarColor
-    div.container.col-md-12
-        div.navbar-header.col-md-2
-            a.navbar-brand(href="/" style="color: white") Pied Piper
-        div.col-md-4
-                ul.nav.navbar-nav
-                    li.menuItems
-                        a(href='/') Home
-                    li.menuItems
-                        a(href='/profile') Profile
-                    li.menuItems
-                        a(href='/my-events') Events
-                    li.menuItems.verticalLine
-                        a(ng-click="logout()" href="")
-                            i.glyphicon.glyphicon-log-out
-
-
+  include ../templates/navbar.html
 
 
 
