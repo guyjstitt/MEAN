@@ -5,7 +5,7 @@
 		<ul class="eventList">
  			<li ng-repeat="meetup in meetups">
     		<div class="panel panel-default">
-    			<div class="panel-heading"href=""  ng-click="viewMeetup(meetup._id, $index);">Event Name: {{meetup.name}} | Hosted By: {{meetup.host.name}} </div>
+    			<div class="panel-heading"href=""  ng-click="viewMeetup(meetup._id, $index);">{{meetup.name}} | Hosted By: {{meetup.host.name}} </div>
     			<div class="panel-body">{{meetup.dek}}</div>
     			<div class="follow">
               <div class="attendees">
