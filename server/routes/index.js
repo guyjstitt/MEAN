@@ -22,7 +22,7 @@ module.exports = function(app) {
 		} else {
 			console.log(req.user);
 			res.render('default', 
-				{ title: 'temp',
+				{ title: 'My Events',
 					user: JSON.stringify(req.user)}
 			)
 		}
