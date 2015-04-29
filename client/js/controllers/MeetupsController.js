@@ -82,12 +82,13 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','sock
 		meetup.name = $scope.meetupName;
 		meetup.dek = $scope.meetupDek;
 		meetup.user = $scope.user;
-		$scope.user.events.push({eventName: meetup.name, eventDek: meetup.dek});
+
 		meetup.$save(function	(result){
 			$scope.meetupName = '';
 			$scope.meetupDek = '';
+
 		});
-		Users.save({_id: $scope.user._id}, $scope.user);
+		Users.save({_id: $scope.user._id}, $scope.user, $scope.user.events.push({eventName: meetup.name, eventDek: meetup.dek}));
 	}
 
 	$scope.deleteMeetup = function($id, $index) {
