@@ -99,3 +99,21 @@
 		border-left: 0px solid yellow; !important;
 	}
 }
+
+.navbar-inverse .navbar-nav > .open > a{
+	background-color: #464545 !important;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+	text-decoration: none;
+	color: #ffffff;
+	background-color: #464545 !important;
+}
+
+.dropdown-menu > li > a {
+	width: 100% !important;
+}
+
+.dropDownMenuItems{
+	text-align: center !important;
+}
