@@ -1,38 +1,26 @@
+app.factory('socketio', ['$rootScope', function ($rootScope) {  
+    var socket = io.connect();
 
-app.factory('socketio', ['$rootScope', function ($rootScope) {
-        
-        var socket = io.connect();
-        return {
-            on: function (eventName, callback) {
-                socket.on(eventName, function () {
-                    var args = arguments;
-                    $rootScope.$apply(function () {
+    return {
+        on: function (eventName, callback) {
+            socket.on(eventName, function () {
+                var args = arguments;
+                $rootScope.$apply(function () {
+                    callback.apply(socket, args);
+                });
+            });
+        },
+        emit: function (eventName, data, callback) {
+            socket.emit(eventName, data, function () {
+                var args = arguments;
+                $rootScope.$apply(function () {
+                    if (callback) {
                         callback.apply(socket, args);
-                    });
+                    }
                 });
-            },
-            emit: function (eventName, data, callback) {
-                socket.emit(eventName, data, function () {
-                    var args = arguments;
-                    $rootScope.$apply(function () {
-                        if (callback) {
-                            callback.apply(socket, args);
-                        }
-                    });
-                });
-            }
-        };
-    }]);
-
-app.controller('TestController', ['$scope','$resource', function($scope, $resource) {
-	var Test = $resource('/api/test');
-	Test.query(function(result) {
-		console.log(result);
-	});
-}]);
-
-app.controller('RegisterController', ['$scope','$resource', function($scope, $resource) {
-
+            });
+        }
+    };
 }]);
 
 app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','socketio', 'users', function($scope, $resource, $routeParams, socketio, users){
@@ -53,11 +41,12 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','sock
 		$scope.meetups = results;
 	});
 
-	console.log('check');
+	//add meetup to array when added to db
 	socketio.on('meetup', function(msg) {
 		$scope.meetups.push(msg);
 	});
 
+	//delete meetup from array when deleted from db
 	socketio.on('deleteMeetup', function(meetup) {
 		for (var i = 0; i < $scope.meetups.length; i++) {
 			if($scope.meetups[i]._id == meetup._id) {
@@ -88,7 +77,7 @@ app.controller('MeetupsController', ['$scope', '$resource', '$routeParams','sock
 			//deleted on emit deletedMeetup
 		}, 
 			function(err) {
-				console.log(err);
+				alert('Event could not be deleted!')
 		});
 	}
 
